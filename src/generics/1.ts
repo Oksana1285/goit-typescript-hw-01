@@ -1,7 +1,14 @@
-const age: number = 50;
-const username: string = "Max";
-const toggle: boolean = true;
-const empty: null = null;
-const callback = (a: number): number => {
-  return 100 + a;
-};
+import axios from 'axios';
+
+type Tudu = { userId: 1; id: 1; title: 'delectus aut autem'; completed: false };
+
+async function fetchData<T>(url: string): Promise<T> {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching from ${url}: ${error}`);
+  }
+}
+
+fetchData<Tudu>('url');
